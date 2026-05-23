@@ -5,11 +5,13 @@ import { Badge } from "@/components/ui/badge";
 import { formatRelativeTime, getFileSizeString } from "@/lib/utils";
 
 const FILE_STYLES: Record<string, { icon: typeof FileText; color: string }> = {
+  "link": { icon: FileCode, color: "bg-emerald-50 text-emerald-600" },
   "application/pdf": { icon: FileText, color: "bg-red-50 text-red-600" },
   "application/zip": { icon: FileArchive, color: "bg-amber-50 text-amber-600" },
   "application/json": { icon: FileCode, color: "bg-green-50 text-green-600" },
   "video/mp4": { icon: Video, color: "bg-purple-50 text-purple-600" },
   "application/figma": { icon: FileImage, color: "bg-pink-50 text-pink-600" },
+  "text/html": { icon: FileCode, color: "bg-blue-50 text-blue-600" },
   default: { icon: FileText, color: "bg-blue-50 text-blue-600" },
 };
 
