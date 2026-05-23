@@ -1,0 +1,72 @@
+import Link from "next/link";
+import { Download, Coins, FileText } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { formatRelativeTime, getFileSizeString } from "@/lib/utils";
+
+interface ResourceCardProps {
+  resource: {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    file_size: number;
+    file_type: string;
+    points_required: number;
+    download_count: number;
+    created_at: string;
+    profiles?: { username: string } | null;
+  };
+}
+
+export function ResourceCard({ resource }: ResourceCardProps) {
+  return (
+    <Link href={`/resources/${resource.id}`}>
+      <Card className="h-full hover:shadow-md transition-all hover:border-primary/50 group cursor-pointer">
+        <CardHeader>
+          <div className="flex items-start gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+              <FileText className="h-5 w-5" />
+            </div>
+            <div className="min-w-0">
+              <CardTitle className="text-sm group-hover:text-primary transition-colors line-clamp-1">
+                {resource.title}
+              </CardTitle>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {resource.profiles?.username || "匿名用户"} ·{" "}
+                {formatRelativeTime(resource.created_at)}
+              </p>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
+            {resource.description || "暂无描述"}
+          </p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1">
+                <Download className="h-3 w-3" />
+                {resource.download_count}
+              </span>
+              {resource.points_required > 0 && (
+                <span className="flex items-center gap-1">
+                  <Coins className="h-3 w-3" />
+                  {resource.points_required} 积分
+                </span>
+              )}
+            </div>
+            <div className="flex gap-1">
+              <Badge variant="secondary" className="text-xs">
+                {resource.category}
+              </Badge>
+              <Badge variant="outline" className="text-xs">
+                {getFileSizeString(resource.file_size)}
+              </Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+}

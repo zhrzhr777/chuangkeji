@@ -1,0 +1,21 @@
+{
+  "name": "创客集 - 工具导航与资源分享",
+  "short_name": "创客集",
+  "description": "发现好工具，分享好资源，连接创造者",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
