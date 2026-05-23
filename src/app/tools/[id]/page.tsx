@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink, Heart, Calendar, Tag, User as UserIcon, MessageSquare, ArrowLeft, MousePointerClick } from "lucide-react";
+import { ExternalLink, Heart, Calendar, Tag, User as UserIcon, MessageSquare, ArrowLeft, MousePointerClick, Rocket, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -117,6 +117,20 @@ export default async function ToolDetailPage({
             <div className="flex items-center gap-3">
               <ToolLikeButton toolId={tool.id} initialLikes={tool.likes_count} />
               <VisitButton toolId={tool.id} url={tool.url} />
+              {tool.deploy_url && (
+                <Button asChild size="sm" variant="secondary">
+                  <a href={tool.deploy_url} target="_blank" rel="noopener noreferrer">
+                    <Rocket className="h-4 w-4 mr-1" />一键部署
+                  </a>
+                </Button>
+              )}
+              {tool.tutorial_url && (
+                <Button asChild size="sm" variant="outline">
+                  <a href={tool.tutorial_url} target="_blank" rel="noopener noreferrer">
+                    <BookOpen className="h-4 w-4 mr-1" />教程
+                  </a>
+                </Button>
+              )}
               <span className="text-xs text-muted-foreground flex items-center gap-1">
                 <MousePointerClick className="h-3.5 w-3.5" />
                 {tool.click_count || 0} 次访问
