@@ -106,6 +106,7 @@ export default async function ResourceDetailPage({
         <DownloadButton
           resourceId={resource.id}
           filePath={resource.file_path}
+          fileType={resource.file_type || ""}
           pointsRequired={resource.points_required}
         />
       </div>
